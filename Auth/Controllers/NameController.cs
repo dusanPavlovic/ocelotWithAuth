@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Auth.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class NameController : ControllerBase
     {
@@ -18,14 +18,14 @@ namespace Auth.Controllers
         }
 
 
-        // GET: api/<NameController>
+        // GET: <NameController>
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "peraKojotSuperGenije", "SimaSimic" };
         }
 
-        // GET api/<NameController>/5
+        // GET <NameController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
@@ -33,8 +33,8 @@ namespace Auth.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody] UserCred userCred )
+        [HttpGet("authenticate")]
+        public IActionResult Authenticate([FromQuery] UserCred userCred )
         {
             var token = _jwtAuthenticationManager.Authenticate(userCred.username, userCred.password);
             if (token == null)

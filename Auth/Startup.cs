@@ -29,7 +29,7 @@ namespace Auth
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            var key = "Test key sa dovoljno karatera";
+            var key = "Test key that contain enough char";
 
             services.AddAuthentication(x=>
 
