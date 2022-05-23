@@ -1,10 +1,9 @@
-﻿using System.Collections;
+﻿using Microsoft.IdentityModel.Tokens;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Auth
 {
@@ -24,32 +23,26 @@ namespace Auth
         {
             //proveriti da li user postoji u bazi
 
-            if (!users.Any(u=>u.Key == username && u.Value == password))
+            if (!users.Any(u => u.Key == username && u.Value == password))
             {
                 return null;
             }
-            
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var tokenKey = Encoding.ASCII.GetBytes(_key);
-                var tokenDescriptor = new SecurityTokenDescriptor
-                {
-                    Subject = new ClaimsIdentity(
-                        new Claim[]
-                        {
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenKey = Encoding.ASCII.GetBytes(_key);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(
+                    new Claim[]
+                    {
                             new Claim(ClaimTypes.Name, username)
-                        }),
-                    Expires = System.DateTime.UtcNow.AddHours(1),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey),
-                        SecurityAlgorithms.HmacSha256Signature)
-
-
-                };
-                var token = tokenHandler.CreateToken(tokenDescriptor);
-                return tokenHandler.WriteToken(token);
-            
-         
+                    }),
+                Expires = System.DateTime.UtcNow.AddHours(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey),
+                    SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
         }
-
-       
     }
 }
