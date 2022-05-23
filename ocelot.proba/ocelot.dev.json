@@ -1,0 +1,62 @@
+﻿{
+  "Routes": [
+
+
+    //{
+    //  "DownstreamPathTemplate": "/api/users",
+    //  "DownstreamScheme": "http",
+    //  "DownstreamHostAndPorts": [
+    //    {
+    //      "Host": "localhost",
+    //      "Port": 9001
+    //    }
+    //  ],
+    //  "UpstreamPathTemplate": "/users",
+    //  "UpstreamHttpMethod": [ "Get" ],
+
+    //  "AuthenticationOptions": {
+    //    "AuthenticationProviderKey": "Bearer",
+    //    "AllowedScopes": []
+    //  }
+    //},
+
+
+    {
+      "DownstreamPathTemplate": "/WeatherForecast",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/api/weather",
+      "UpstreamHttpMethod": [ "Get" ]
+    }
+    //,
+
+    //{
+
+
+    //  "DownstreamPathTemplate": "/api/auth?name={name}&pwd={pwd}",
+    //  "UpstreamPathTemplate": "/api/auth?name={name}&pwd={pwd}",
+    //  "UpstreamHttpMethod": [
+    //    "Get"
+    //  ],
+    //  "DownstreamScheme": "http",
+    //  "DownstreamHostAndPorts": [
+    //    {
+    //      "Host": "localhost",
+    //      "Port": 9009
+    //    }
+    //  ]
+
+
+    //}
+  ],
+  "GlobalConfiguration": {
+    //"RequestIdKey": "OcRequestId",
+    //"AdministrationPath": "/administration",
+    "BaseUrl": "https://localhost:5021"
+  }
+}

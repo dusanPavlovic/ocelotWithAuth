@@ -1,10 +1,12 @@
+using System;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace API_Gateway
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
@@ -15,8 +17,12 @@ namespace API_Gateway
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
                     webBuilder.UseStartup<Startup>();
-                }).ConfigureLogging( logging => logging.AddConsole());
+                    webBuilder.ConfigureAppConfiguration(config =>
+                        config.AddJsonFile($"ocelot.{env}.json"));
+                })
+                .ConfigureLogging( logging => logging.AddConsole());
             
 
     }
