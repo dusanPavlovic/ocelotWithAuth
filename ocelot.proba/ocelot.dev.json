@@ -11,15 +11,12 @@
         }
       ],
       "UpstreamPathTemplate": "/api/weather",
-      "UpstreamHttpMethod": [ "Get" ]
-      //,
-      //"AuthenticationOptions": {
-      //  "AuthenticationProviderKey": "Bearer",
-      //  "AllowedScopes": []
-      //}
+      "UpstreamHttpMethod": [ "Get" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
     },
-
-
 
     {
       "DownstreamPathTemplate": "/name/authenticate?username={username}&password={password}",
@@ -33,40 +30,7 @@
       "UpstreamPathTemplate": "/api/name/authenticate?username={username}&password={password}",
       "UpstreamHttpMethod": [ "Get" ]
     }
-    //{
-    //  "DownstreamPathTemplate": "/WeatherForecast",
-    //  "DownstreamScheme": "https",
-    //  "DownstreamHostAndPorts": [
-    //    {
-    //      "Host": "localhost",
-    //      "Port": 5001
-    //    }
-    //  ],
-    //  "UpstreamPathTemplate": "/api/weather",
-    //  "UpstreamHttpMethod": [ "Get" ]
-    //  //,
-    //  //"AuthenticationOptions": {
-    //  //  "AuthenticationProviderKey": "Bearer",
-    //  //  "AllowedScopes": []
-    //  //}
-    //}
-    //,
 
-    //{
-    //  "DownstreamPathTemplate": "/api/auth?name={name}&pwd={pwd}",
-    //  "UpstreamPathTemplate": "/api/auth?name={name}&pwd={pwd}",
-    //  "UpstreamHttpMethod": [
-    //    "Get"
-    //  ],
-    //  "DownstreamScheme": "http",
-    //  "DownstreamHostAndPorts": [
-    //    {
-    //      "Host": "localhost",
-    //      "Port": 9009
-    //    }
-    //  ]
-
-    //}
   ],
   "GlobalConfiguration": {
     //"RequestIdKey": "OcRequestId",
